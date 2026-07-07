@@ -351,12 +351,28 @@ button:active {
   overflow: hidden;
 }
 
-.image-frame img {
+.protected-media,
+.image-frame,
+.thumb-strip,
+.table-thumb {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+
+.protected-media {
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: auto;
+}
+
+.image-frame .main-product-image {
   width: 100%;
   height: 100%;
-  object-fit: contain;
   display: block;
-  background: var(--canvas);
+  background-size: contain;
+  background-color: var(--canvas);
 }
 
 .image-placeholder {
@@ -434,11 +450,12 @@ button:active {
   border: 2px solid var(--primary);
 }
 
-.thumb-strip img {
+.protected-thumb {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   display: block;
+  background-size: cover;
+  background-color: var(--soft);
 }
 
 .table-wrap {
@@ -481,8 +498,10 @@ td.number {
 .table-thumb {
   width: 72px;
   height: 72px;
-  object-fit: contain;
-  background: var(--soft);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: var(--soft);
   border: 1px solid var(--hairline);
   display: block;
 }

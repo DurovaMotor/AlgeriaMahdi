@@ -41,6 +41,47 @@
       .replaceAll("'", "&#039;");
   }
 
+  function setProtectedBackground(element, src) {
+    if (!element || !src) return;
+    element.style.backgroundImage = `url(${JSON.stringify(src)})`;
+  }
+
+  function hydrateProtectedImages(root = document) {
+    root.querySelectorAll(".protected-media[data-src]").forEach((element) => {
+      setProtectedBackground(element, element.dataset.src);
+    });
+  }
+
+  function installImageProtections() {
+    const protectedTarget = (target) => {
+      const element = target instanceof Element ? target : target?.parentElement;
+      return element?.closest(".protected-media, .image-frame, .thumb-strip, .table-thumb");
+    };
+    document.addEventListener("contextmenu", (event) => {
+      event.preventDefault();
+    });
+    document.addEventListener("dragstart", (event) => {
+      if (protectedTarget(event.target)) {
+        event.preventDefault();
+      }
+    });
+    document.addEventListener("selectstart", (event) => {
+      if (protectedTarget(event.target)) {
+        event.preventDefault();
+      }
+    });
+    document.addEventListener("keydown", (event) => {
+      const key = String(event.key || "").toLowerCase();
+      const command = event.ctrlKey || event.metaKey;
+      const blockedCommand = command && ["s", "u", "p"].includes(key);
+      const blockedDevTools = event.key === "F12" || (event.ctrlKey && event.shiftKey && ["i", "j", "c"].includes(key));
+      if (blockedCommand || blockedDevTools) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    }, true);
+  }
+
   function renderSummary() {
     const meta = state.meta;
     const stats = [
@@ -69,7 +110,7 @@
       ? `<div class="thumb-strip" aria-label="Additional product images">
           ${product.images.map((img, index) => `
             <button type="button" class="${index === 0 ? "active" : ""}" data-thumb="${escapeHtml(img.src)}" aria-label="Show product image ${index + 1}">
-              <img src="${escapeHtml(img.src)}" alt="" loading="lazy">
+              <span class="protected-thumb protected-media" data-src="${escapeHtml(img.src)}"></span>
             </button>
           `).join("")}
         </div>`
@@ -78,7 +119,7 @@
       <article class="product-card" data-row="${escapeHtml(product.sourceRow)}">
         <div class="image-frame">
           ${firstImage
-            ? `<img class="main-product-image" src="${escapeHtml(firstImage.src)}" alt="${escapeHtml(product.productEnglishName)}" loading="lazy">`
+            ? `<div class="main-product-image protected-media" role="img" aria-label="${escapeHtml(product.productEnglishName)}" data-src="${escapeHtml(firstImage.src)}"></div>`
             : `<div class="image-placeholder">No image</div>`}
         </div>
         <div class="card-body">
@@ -110,7 +151,7 @@
       <tr>
         <td>
           ${firstImage
-            ? `<img class="table-thumb" src="${escapeHtml(firstImage.src)}" alt="${escapeHtml(product.productEnglishName)}" loading="lazy">`
+            ? `<div class="table-thumb protected-media" role="img" aria-label="${escapeHtml(product.productEnglishName)}" data-src="${escapeHtml(firstImage.src)}"></div>`
             : `<div class="table-placeholder">No image</div>`}
         </td>
         <td>${escapeHtml(product.productEnglishName)}</td>
@@ -156,6 +197,8 @@
     }
     els.productGrid.innerHTML = state.filtered.map(productCard).join("");
     els.quoteRows.innerHTML = state.filtered.map(tableRow).join("");
+    hydrateProtectedImages(els.productGrid);
+    hydrateProtectedImages(els.quoteRows);
   }
 
   function bindEvents() {
@@ -174,7 +217,8 @@
       const card = button.closest(".product-card");
       const image = card.querySelector(".main-product-image");
       if (!image) return;
-      image.src = button.dataset.thumb;
+      image.dataset.src = button.dataset.thumb;
+      setProtectedBackground(image, button.dataset.thumb);
       card.querySelectorAll(".thumb-strip button").forEach((item) => item.classList.remove("active"));
       button.classList.add("active");
     });
@@ -189,6 +233,7 @@
     state.meta = payload.meta;
     state.products = payload.products;
     renderSummary();
+    installImageProtections();
     bindEvents();
     applyFilters();
   }
