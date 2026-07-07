@@ -51,7 +51,7 @@
   function installImageProtections() {
     const protectedTarget = (target) => {
       const element = target instanceof Element ? target : target?.parentElement;
-      return element?.closest(".protected-media, .image-frame, .thumb-strip, .table-thumb");
+      return element?.closest(".protected-media, .image-frame, .table-thumb");
     };
     document.addEventListener("contextmenu", (event) => {
       event.preventDefault();
@@ -102,15 +102,6 @@
 
   function productCard(product) {
     const firstImage = getFirstImage(product);
-    const thumbs = product.images && product.images.length > 1
-      ? `<div class="thumb-strip" aria-label="Additional product images">
-          ${product.images.map((img, index) => `
-            <button type="button" class="${index === 0 ? "active" : ""}" data-thumb="${escapeHtml(img.src)}" aria-label="Show product image ${index + 1}">
-              <span class="protected-thumb protected-media" data-src="${escapeHtml(img.src)}"></span>
-            </button>
-          `).join("")}
-        </div>`
-      : "";
     return `
       <article class="product-card" data-row="${escapeHtml(product.sourceRow)}">
         <div class="image-frame">
@@ -136,7 +127,6 @@
             </div>
           </dl>
         </div>
-        ${thumbs}
       </article>
     `;
   }
@@ -178,17 +168,7 @@
   }
 
   function bindEvents() {
-    els.productGrid.addEventListener("click", (event) => {
-      const button = event.target.closest("[data-thumb]");
-      if (!button) return;
-      const card = button.closest(".product-card");
-      const image = card.querySelector(".main-product-image");
-      if (!image) return;
-      image.dataset.src = button.dataset.thumb;
-      setProtectedBackground(image, button.dataset.thumb);
-      card.querySelectorAll(".thumb-strip button").forEach((item) => item.classList.remove("active"));
-      button.classList.add("active");
-    });
+    return true;
   }
 
   async function init() {

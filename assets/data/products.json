@@ -25,16 +25,6 @@
           "src": "assets/products/row-002-01.webp",
           "width": 236,
           "height": 236
-        },
-        {
-          "src": "assets/products/row-002-02.webp",
-          "width": 236,
-          "height": 236
-        },
-        {
-          "src": "assets/products/row-002-03.webp",
-          "width": 354,
-          "height": 354
         }
       ]
     },
@@ -81,11 +71,6 @@
       "images": [
         {
           "src": "assets/products/row-005-01.webp",
-          "width": 354,
-          "height": 354
-        },
-        {
-          "src": "assets/products/row-005-02.webp",
           "width": 354,
           "height": 354
         }
@@ -136,11 +121,6 @@
           "src": "assets/products/row-008-01.webp",
           "width": 354,
           "height": 189
-        },
-        {
-          "src": "assets/products/row-008-02.webp",
-          "width": 354,
-          "height": 265
         }
       ]
     },
@@ -429,11 +409,6 @@
           "src": "assets/products/row-026-01.webp",
           "width": 354,
           "height": 354
-        },
-        {
-          "src": "assets/products/row-026-02.webp",
-          "width": 354,
-          "height": 354
         }
       ]
     },
@@ -496,11 +471,6 @@
       "images": [
         {
           "src": "assets/products/row-030-01.webp",
-          "width": 354,
-          "height": 354
-        },
-        {
-          "src": "assets/products/row-030-02.webp",
           "width": 354,
           "height": 354
         }
@@ -1015,11 +985,6 @@
           "src": "assets/products/row-062-01.webp",
           "width": 354,
           "height": 354
-        },
-        {
-          "src": "assets/products/row-062-02.webp",
-          "width": 354,
-          "height": 354
         }
       ]
     },
@@ -1196,11 +1161,6 @@
           "src": "assets/products/row-073-01.webp",
           "width": 354,
           "height": 354
-        },
-        {
-          "src": "assets/products/row-073-02.webp",
-          "width": 354,
-          "height": 354
         }
       ]
     },
@@ -1265,11 +1225,6 @@
           "src": "assets/products/row-077-01.webp",
           "width": 354,
           "height": 354
-        },
-        {
-          "src": "assets/products/row-077-02.webp",
-          "width": 354,
-          "height": 354
         }
       ]
     },
@@ -1300,11 +1255,6 @@
       "images": [
         {
           "src": "assets/products/row-079-01.webp",
-          "width": 354,
-          "height": 354
-        },
-        {
-          "src": "assets/products/row-079-02.webp",
           "width": 354,
           "height": 354
         }
@@ -1801,11 +1751,6 @@
       "images": [
         {
           "src": "assets/products/row-110-01.webp",
-          "width": 354,
-          "height": 354
-        },
-        {
-          "src": "assets/products/row-110-02.webp",
           "width": 354,
           "height": 354
         }
@@ -2714,11 +2659,6 @@
           "src": "assets/products/row-167-01.webp",
           "width": 147,
           "height": 264
-        },
-        {
-          "src": "assets/products/row-167-02.webp",
-          "width": 134,
-          "height": 238
         }
       ]
     },
@@ -2735,11 +2675,6 @@
           "src": "assets/products/row-168-01.webp",
           "width": 160,
           "height": 285
-        },
-        {
-          "src": "assets/products/row-168-02.webp",
-          "width": 153,
-          "height": 273
         }
       ]
     },
