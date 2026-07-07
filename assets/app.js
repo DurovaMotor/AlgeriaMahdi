@@ -12,10 +12,6 @@
     productGrid: document.querySelector("#productGrid"),
     quoteRows: document.querySelector("#quoteRows"),
     resultCount: document.querySelector("#resultCount"),
-    searchInput: document.querySelector("#searchInput"),
-    sortSelect: document.querySelector("#sortSelect"),
-    imageOnly: document.querySelector("#imageOnly"),
-    resetButton: document.querySelector("#resetButton"),
   };
 
   const fmtNumber = new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 });
@@ -163,28 +159,8 @@
     `;
   }
 
-  function applyFilters() {
-    const search = els.searchInput.value.trim().toLowerCase();
-    const imageOnly = els.imageOnly.checked;
-    let next = state.products.filter((product) => {
-      const haystack = `${product.productEnglishName} ${product.model}`.toLowerCase();
-      return (!search || haystack.includes(search)) && (!imageOnly || product.images.length);
-    });
-
-    switch (els.sortSelect.value) {
-      case "sumDesc":
-        next = next.sort((a, b) => b.sum - a.sum || a.sourceRow - b.sourceRow);
-        break;
-      case "qtyDesc":
-        next = next.sort((a, b) => b.salesQuantity - a.salesQuantity || a.sourceRow - b.sourceRow);
-        break;
-      case "nameAsc":
-        next = next.sort((a, b) => a.productEnglishName.localeCompare(b.productEnglishName));
-        break;
-      default:
-        next = next.sort((a, b) => a.sourceRow - b.sourceRow);
-    }
-    state.filtered = next;
+  function renderAllProducts() {
+    state.filtered = [...state.products].sort((a, b) => a.sourceRow - b.sourceRow);
     renderProducts();
   }
 
@@ -202,15 +178,6 @@
   }
 
   function bindEvents() {
-    els.searchInput.addEventListener("input", applyFilters);
-    els.sortSelect.addEventListener("change", applyFilters);
-    els.imageOnly.addEventListener("change", applyFilters);
-    els.resetButton.addEventListener("click", () => {
-      els.searchInput.value = "";
-      els.sortSelect.value = "sheet";
-      els.imageOnly.checked = false;
-      applyFilters();
-    });
     els.productGrid.addEventListener("click", (event) => {
       const button = event.target.closest("[data-thumb]");
       if (!button) return;
@@ -235,7 +202,7 @@
     renderSummary();
     installImageProtections();
     bindEvents();
-    applyFilters();
+    renderAllProducts();
   }
 
   init().catch((error) => {
