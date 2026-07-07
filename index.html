@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Algeria Mahdi Parts Quotation | Durova Motor</title>
+  <base href="./">
+  <link rel="icon" href="favicon.ico">
+  <script>
+    (function () {
+      var bypass = /(^|\/)Adam(\/|$)/.test(window.location.pathname);
+      var languages = [];
+      if (navigator.language) languages.push(navigator.language);
+      if (navigator.languages) languages = languages.concat(navigator.languages);
+      var chineseBrowser = languages.some(function (language) {
+        return /^zh(?:-|$)/i.test(String(language || ""));
+      });
+      if (chineseBrowser && !bypass) {
+        document.documentElement.classList.add("locale-blocked");
+        window.__QUOTE_LOCALE_BLOCKED__ = true;
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <section class="locale-blocker" aria-label="Access blocked">
+    <div>
+      <span class="corner"></span>
+      <p class="eyebrow">Access unavailable</p>
+      <h1>This quotation is not available for your browser language.</h1>
+      <p>Use the authorized customer route to view this page.</p>
+    </div>
+  </section>
+
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Durova Motor quotation home">
+        <span class="brand-mark"></span>
+        <span>Durova Motor</span>
+      </a>
+      <nav aria-label="Quotation sections">
+        <a href="#catalog">Catalog</a>
+        <a href="#quote-table">Table</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="quote-header">
+        <div class="quote-copy">
+          <p class="eyebrow">Customer quote presentation</p>
+          <h1>Algeria Mahdi Parts Quotation</h1>
+          <p class="intro">A structured product quotation built from the supplied workbook, using column B product images as the primary visual reference.</p>
+        </div>
+        <div class="summary-grid" id="summaryGrid" aria-label="Quotation summary"></div>
+      </section>
+
+      <section class="controls-band" aria-label="Catalog controls">
+        <div class="controls-inner">
+          <label class="search-control">
+            <span>Search quote</span>
+            <input id="searchInput" type="search" placeholder="Product name or model">
+          </label>
+          <label>
+            <span>Sort by</span>
+            <select id="sortSelect">
+              <option value="sheet">Sheet order</option>
+              <option value="sumDesc">Highest SUM</option>
+              <option value="qtyDesc">Highest quantity</option>
+              <option value="nameAsc">Product name</option>
+            </select>
+          </label>
+          <label class="check-control">
+            <input id="imageOnly" type="checkbox">
+            <span>Image-backed only</span>
+          </label>
+          <button id="resetButton" type="button">Reset</button>
+        </div>
+      </section>
+
+      <section id="catalog" class="catalog-section">
+        <div class="section-heading">
+          <p class="eyebrow">Product images</p>
+          <h2>Quotation catalog</h2>
+          <p id="resultCount"></p>
+        </div>
+        <div id="productGrid" class="product-grid"></div>
+      </section>
+
+      <section id="quote-table" class="table-section">
+        <div class="section-heading">
+          <p class="eyebrow">Line item table</p>
+          <h2>Sales details</h2>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Product Image</th>
+                <th>Product English Name</th>
+                <th>Sales Quantity</th>
+                <th>Actual Sales Price</th>
+                <th>SUM</th>
+                <th>Model</th>
+              </tr>
+            </thead>
+            <tbody id="quoteRows"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span class="corner"></span>
+      <p>Durova Motor quotation page. Currency shown in RMB.</p>
+    </footer>
+  </div>
+
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,581 @@
+/*
+Brand source: NVIDIA design analysis from getdesign.md.
+Key tokens used: #76b900 accent, #000000 dark surface, #ffffff canvas,
+2px angular radius, Inter/Arial sans-serif fallback, hairline card borders.
+*/
+:root {
+  --primary: #76b900;
+  --primary-dark: #5a8d00;
+  --ink: #000000;
+  --body: #1a1a1a;
+  --canvas: #ffffff;
+  --dark: #000000;
+  --soft: #f7f7f7;
+  --elevated: #1a1a1a;
+  --hairline: #cccccc;
+  --hairline-strong: #5e5e5e;
+  --mute: #757575;
+  --ash: #a7a7a7;
+  --on-dark: #ffffff;
+  --on-dark-mute: rgba(255,255,255,0.7);
+  --radius: 2px;
+  --container: 1280px;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  color: var(--ink);
+  background: var(--canvas);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--body);
+  background: var(--canvas);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.locale-blocker {
+  display: none;
+  min-height: 100vh;
+  place-items: center;
+  padding: 32px;
+  color: var(--on-dark);
+  background: var(--dark);
+}
+
+.locale-blocked .locale-blocker {
+  display: grid;
+}
+
+.locale-blocked .site-shell {
+  display: none;
+}
+
+.locale-blocker > div {
+  width: min(680px, 100%);
+  border: 1px solid var(--hairline-strong);
+  padding: 32px;
+  position: relative;
+}
+
+.corner,
+.brand-mark,
+.product-card::before {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: var(--primary);
+}
+
+.topbar {
+  height: 64px;
+  background: var(--dark);
+  color: var(--on-dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(16px, 4vw, 48px);
+  border-bottom: 1px solid var(--hairline-strong);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+}
+
+.topbar nav {
+  display: flex;
+  gap: 24px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.topbar a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+.quote-header {
+  background: var(--dark);
+  color: var(--on-dark);
+  padding: 56px clamp(16px, 4vw, 48px) 48px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+  gap: 32px;
+  align-items: end;
+}
+
+.quote-copy {
+  max-width: 760px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--primary);
+  font-size: 14px;
+  line-height: 1.43;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 16px;
+  color: inherit;
+  font-size: clamp(32px, 5vw, 48px);
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+h2 {
+  margin-bottom: 8px;
+  color: var(--ink);
+  font-size: 36px;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.47;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.intro {
+  max-width: 720px;
+  margin: 0;
+  color: var(--on-dark-mute);
+  font-size: 22px;
+  line-height: 1.75;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--hairline-strong);
+  border-left: 1px solid var(--hairline-strong);
+}
+
+.summary-card {
+  min-height: 108px;
+  padding: 20px;
+  border-right: 1px solid var(--hairline-strong);
+  border-bottom: 1px solid var(--hairline-strong);
+  background: var(--elevated);
+}
+
+.summary-card span {
+  display: block;
+  color: var(--on-dark-mute);
+  font-size: 12px;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.summary-card strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--primary);
+  font-size: 28px;
+  line-height: 1.25;
+}
+
+.controls-band {
+  background: var(--soft);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.controls-inner {
+  width: min(var(--container), calc(100% - 32px));
+  margin: 0 auto;
+  min-height: 72px;
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) minmax(180px, 240px) auto auto;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 0;
+}
+
+.controls-inner label {
+  display: grid;
+  gap: 4px;
+}
+
+.controls-inner label > span {
+  color: var(--mute);
+  font-size: 12px;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.controls-inner input[type="search"],
+.controls-inner select {
+  width: 100%;
+  height: 44px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  background: var(--canvas);
+  color: var(--ink);
+  padding: 10px 14px;
+}
+
+.check-control {
+  min-height: 44px;
+  display: flex !important;
+  grid-template-columns: none !important;
+  align-items: center;
+  gap: 10px !important;
+  color: var(--ink);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.check-control input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+}
+
+.check-control span {
+  color: var(--ink) !important;
+  font-size: 14px !important;
+  text-transform: none !important;
+}
+
+button {
+  height: 44px;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--ink);
+  font-weight: 700;
+  padding: 11px 16px;
+  cursor: pointer;
+}
+
+button:active {
+  background: var(--primary-dark);
+  color: var(--ink);
+}
+
+.catalog-section,
+.table-section {
+  width: min(var(--container), calc(100% - 32px));
+  margin: 0 auto;
+  padding: 64px 0;
+}
+
+.table-section {
+  padding-top: 0;
+}
+
+.section-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.section-heading p:last-child {
+  margin: 0;
+  color: var(--mute);
+  font-size: 15px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.product-card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  background: var(--canvas);
+  min-width: 0;
+}
+
+.product-card::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+}
+
+.image-frame {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--soft);
+  border-bottom: 1px solid var(--hairline);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: var(--canvas);
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: var(--mute);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 1px dashed var(--hairline);
+}
+
+.card-body {
+  padding: 20px;
+  min-width: 0;
+}
+
+.model-line {
+  margin: 8px 0 0;
+  color: var(--mute);
+  font-size: 14px;
+  line-height: 1.43;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 18px 0 0;
+  border-top: 1px solid var(--hairline);
+  border-left: 1px solid var(--hairline);
+}
+
+.metric {
+  padding: 10px;
+  border-right: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  min-width: 0;
+}
+
+.metric dt {
+  color: var(--mute);
+  font-size: 10px;
+  line-height: 1.5;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.metric dd {
+  margin: 4px 0 0;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.thumb-strip {
+  display: flex;
+  gap: 6px;
+  padding: 0 20px 20px;
+  overflow-x: auto;
+}
+
+.thumb-strip button {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--hairline);
+  background: var(--canvas);
+}
+
+.thumb-strip button.active {
+  border: 2px solid var(--primary);
+}
+
+.thumb-strip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--hairline);
+}
+
+table {
+  width: 100%;
+  min-width: 920px;
+  border-collapse: collapse;
+  background: var(--canvas);
+}
+
+th,
+td {
+  padding: 12px;
+  border-bottom: 1px solid var(--hairline);
+  text-align: left;
+  vertical-align: middle;
+}
+
+th {
+  background: var(--dark);
+  color: var(--on-dark);
+  font-size: 12px;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+td {
+  font-size: 14px;
+}
+
+td.number {
+  text-align: right;
+  font-weight: 700;
+}
+
+.table-thumb {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  background: var(--soft);
+  border: 1px solid var(--hairline);
+  display: block;
+}
+
+.table-placeholder {
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  color: var(--mute);
+  background: var(--soft);
+  border: 1px dashed var(--hairline);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+footer {
+  position: relative;
+  background: var(--dark);
+  color: var(--on-dark-mute);
+  padding: 40px clamp(16px, 4vw, 48px);
+  border-top: 1px solid var(--hairline-strong);
+}
+
+footer p {
+  margin: 20px 0 0;
+}
+
+.empty-state {
+  border: 1px solid var(--hairline);
+  padding: 32px;
+  color: var(--mute);
+}
+
+@media (max-width: 1100px) {
+  .product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .quote-header {
+    grid-template-columns: 1fr;
+    padding-top: 40px;
+  }
+
+  .controls-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .topbar {
+    height: auto;
+    min-height: 64px;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    gap: 10px;
+  }
+
+  .topbar nav {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .intro {
+    font-size: 18px;
+    line-height: 1.55;
+  }
+
+  .summary-grid,
+  .controls-inner,
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .catalog-section,
+  .table-section {
+    width: min(100% - 24px, var(--container));
+    padding: 32px 0;
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+}
