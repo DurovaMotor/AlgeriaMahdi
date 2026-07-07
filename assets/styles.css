@@ -55,26 +55,22 @@ select {
 
 .locale-blocker {
   display: none;
-  min-height: 100vh;
-  place-items: center;
-  padding: 32px;
-  color: var(--on-dark);
+  position: fixed;
+  inset: 0;
+  background: var(--dark);
+  z-index: 9999;
+}
+
+.locale-blocked body {
   background: var(--dark);
 }
 
 .locale-blocked .locale-blocker {
-  display: grid;
+  display: block;
 }
 
 .locale-blocked .site-shell {
   display: none;
-}
-
-.locale-blocker > div {
-  width: min(680px, 100%);
-  border: 1px solid var(--hairline-strong);
-  padding: 32px;
-  position: relative;
 }
 
 .corner,
